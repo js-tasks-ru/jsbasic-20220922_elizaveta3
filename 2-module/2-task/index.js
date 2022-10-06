@@ -1,3 +1,7 @@
 function isEmpty(obj) {
-  // ваш код...
+  for (let prop in obj) {
+    return !(prop in obj);
+  }
+
+  return true;
 }
