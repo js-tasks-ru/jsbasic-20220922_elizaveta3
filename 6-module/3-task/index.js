@@ -59,7 +59,7 @@ export default class Carousel {
         while (index < cardCount - 1) {
           index++;
           window.style.transform = `translateX(${
-            -index * elem.querySelector(".carousel__inner").offsetWidth
+            -index * elem.querySelector(".carousel__slide").offsetWidth
           }px)`;
           arrowLeft.style.display = "";
           index === cardCount - 1
