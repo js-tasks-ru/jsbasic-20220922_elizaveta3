@@ -12,26 +12,24 @@ function initCarousel() {
   arrowLeft.style.display = "none";
 
   arrowRight.addEventListener("click", () => {
-    while (index < cardCount - 1) {
+    if (index < cardCount - 1) {
       index++;
       window.style.transform = `translateX(${-index * cardWidth}px)`;
       arrowLeft.style.display = "";
       index === cardCount - 1
         ? (arrowRight.style.display = "none")
         : (arrowRight.style.display = "");
-      break;
     }
   });
 
   arrowLeft.addEventListener("click", () => {
-    while (index > 0) {
+    if (index > 0) {
       index--;
       window.style.transform = `translateX(${-index * cardWidth}px)`;
       arrowRight.style.display = "";
       index === 0
         ? (arrowLeft.style.display = "none")
         : (arrowLeft.style.display = "");
-      break;
     }
   });
 }
