@@ -10,9 +10,9 @@ export default class Carousel {
       <div class="carousel__arrow carousel__arrow_left">
         <img src="/assets/images/icons/angle-left-icon.svg" alt="icon">
       </div>
-  
+
       <div class="carousel__inner">
-        
+
         ${this.slides.map(
           (card) => `<div class="carousel__slide" data-id="${card.id}">
   <img src="/assets/images/carousel/${
@@ -56,7 +56,7 @@ export default class Carousel {
 
     this.elem.addEventListener("click", function (event) {
       if (event.target.closest(".carousel__arrow_right")) {
-        while (index < cardCount - 1) {
+        if (index < cardCount - 1) {
           index++;
           window.style.transform = `translateX(${
             -index * elem.querySelector(".carousel__slide").offsetWidth
@@ -65,10 +65,9 @@ export default class Carousel {
           index === cardCount - 1
             ? (arrowRight.style.display = "none")
             : (arrowRight.style.display = "");
-          break;
         }
       } else if (event.target.closest(".carousel__arrow_left")) {
-        while (index > 0) {
+        if (index > 0) {
           index--;
           window.style.transform = `translateX(${
             -index * elem.querySelector(".carousel__slide").offsetWidth
@@ -77,7 +76,6 @@ export default class Carousel {
           index === 0
             ? (arrowLeft.style.display = "none")
             : (arrowLeft.style.display = "");
-          break;
         }
       }
     });
