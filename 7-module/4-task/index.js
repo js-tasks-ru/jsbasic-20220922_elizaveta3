@@ -6,10 +6,10 @@ export default class StepSlider {
     this.value = value;
     this.elem = createElement(
       `<div class="slider">
-<div class="slider__thumb">
+<div class="slider__thumb" style="left: 75%">
   <span class="slider__value">${this.value}</span>
 </div>
-<div class="slider__progress" style="width: 0%"></div>
+<div class="slider__progress" style="width: 75%"></div>
 <div class="slider__steps">
 </div>
 </div>`
@@ -24,12 +24,10 @@ export default class StepSlider {
   sliderSteps = () => {
     let wrapSliderSteps = this.elem.querySelector(".slider__steps");
     for (var i = 1; i <= this.steps; i++) {
-      if (i == 1) {
-        wrapSliderSteps.innerHTML = `<span class="slider__step-active"></span>`;
-      } else {
-        wrapSliderSteps.innerHTML += "<span></span>";
-      }
+      wrapSliderSteps.innerHTML += "<span></span>";
     }
+    let spans = wrapSliderSteps.querySelectorAll("span");
+    spans[this.value].classList.add("slider__step-active");
   };
 
   changePosition = (el) => {
@@ -42,7 +40,9 @@ export default class StepSlider {
     this.value = value;
 
     this.elem.querySelector(".slider__thumb").style.left = `${valuePercents}%`;
-    this.elem.querySelector(".slider__progress").style.width = `${valuePercents}%`;
+    this.elem.querySelector(
+      ".slider__progress"
+    ).style.width = `${valuePercents}%`;
     this.elem.querySelector(".slider__value").textContent = value;
 
     let eventCustom = new CustomEvent("slider-change", {
@@ -60,7 +60,6 @@ export default class StepSlider {
 
   addEventListeners() {
     this.elem.addEventListener("click", this.changePosition);
-
   }
 
   dragEvents() {
@@ -102,7 +101,9 @@ export default class StepSlider {
 
     let leftPercents = leftRelative * 100;
     this.elem.querySelector(".slider__thumb").style.left = `${leftPercents}%`;
-    this.elem.querySelector(".slider__progress").style.width = `${leftPercents}%`;
+    this.elem.querySelector(
+      ".slider__progress"
+    ).style.width = `${leftPercents}%`;
     this.elem.querySelector(".slider__value").textContent = value;
   };
 }
